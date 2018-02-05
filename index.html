@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable"/>
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+	    <meta content="telephone=no" name="format-detection"/>
+	    <link rel="stylesheet" href="css/reset.css" />
+	    <link rel="stylesheet" href="css/index.css" />
+		<title>诗尼曼家具</title>
+		<script type="text/javascript" src="js/lufylegend-1.10.1.min.js" ></script>
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<div id="hotata"></div>
+		<div id="year">
+			<img src="img/year1.jpg" />
+		</div>
+		<script>
+			function audioAutoPlay(id,v){
+			    var audio = document.getElementById(id);
+			    audio.play();
+			    if(v==0)
+			    {
+			    	audio.pause();
+			    }
+			    document.addEventListener("WeixinJSBridgeReady", function () {
+			            audio.play();
+			            if(v==0)
+					    {
+					    	audio.pause();
+					    }
+			    }, false);
+			}
+//			audioAutoPlay('bg');
+//			audioAutoPlay('a',0);
+		</script>
+		<script type="text/javascript" src="js/resource.js" ></script>
+		<script type="text/javascript" src="js/bemzjGame.js" ></script>
+		<script type="text/javascript" src="js/main.js" ></script>
+	</body>
+</html>
