@@ -1,6 +1,182 @@
-#year {
+#yearOut {
   position: fixed;
   top: 0;
-  left: 0; }
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5; }
+  #yearOut > p {
+    font-size: 0.26rem;
+    color: #1b1d20;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 16.2%; }
+  #yearOut .setImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    opacity: 0; }
+
+.hitRed {
+  width: 30%;
+  position: absolute;
+  top: 15.58%;
+  right: 5%;
+  z-index: 10;
+  animation: aniLoad03 6s linear infinite;
+  -moz-animation: aniLoad03 6s linear infinite;
+  -webkit-animation: aniLoad03 6s linear infinite;
+  -ms-animation: aniLoad03 6s linear infinite; }
+  .hitRed a {
+    width: 100%;
+    display: block; }
+    .hitRed a img {
+      width: 100%; }
+  .hitRed .close {
+    width: 20%;
+    position: absolute;
+    right: 0%;
+    top: -10%; }
+
+@keyframes aniLoad03 {
+  0% {
+    right: 5%;
+    transform: rotate(0deg); }
+  18% {
+    right: 7%;
+    transform: rotate(8deg); }
+  34% {
+    right: 9%;
+    transform: rotate(0deg); }
+  50% {
+    right: 11%;
+    transform: rotate(8deg); }
+  66% {
+    right: 9%;
+    transform: rotate(0deg); }
+  82% {
+    right: 7%;
+    transform: rotate(8deg); }
+  100% {
+    right: 5%;
+    transform: rotate(0deg); } }
+@-moz-keyframes aniLoad03 {
+  0% {
+    right: 5%;
+    transform: rotate(0deg); }
+  18% {
+    right: 7%;
+    transform: rotate(8deg); }
+  34% {
+    right: 9%;
+    transform: rotate(0deg); }
+  50% {
+    right: 11%;
+    transform: rotate(8deg); }
+  66% {
+    right: 9%;
+    transform: rotate(0deg); }
+  82% {
+    right: 7%;
+    transform: rotate(8deg); }
+  100% {
+    right: 5%;
+    transform: rotate(0deg); } }
+@-webkit-keyframes aniLoad03 {
+  0% {
+    right: 5%;
+    transform: rotate(0deg); }
+  18% {
+    right: 7%;
+    transform: rotate(8deg); }
+  34% {
+    right: 9%;
+    transform: rotate(0deg); }
+  50% {
+    right: 11%;
+    transform: rotate(8deg); }
+  66% {
+    right: 9%;
+    transform: rotate(0deg); }
+  82% {
+    right: 7%;
+    transform: rotate(8deg); }
+  100% {
+    right: 5%;
+    transform: rotate(0deg); } }
+@-ms-keyframes aniLoad03 {
+  0% {
+    right: 5%;
+    transform: rotate(0deg); }
+  18% {
+    right: 7%;
+    transform: rotate(8deg); }
+  34% {
+    right: 9%;
+    transform: rotate(0deg); }
+  50% {
+    right: 11%;
+    transform: rotate(8deg); }
+  66% {
+    right: 9%;
+    transform: rotate(0deg); }
+  82% {
+    right: 7%;
+    transform: rotate(8deg); }
+  100% {
+    right: 5%;
+    transform: rotate(0deg); } }
+#year {
+  width: 100%;
+  height: 100%; }
+  #year > img {
+    width: 100%;
+    height: 100%; }
+
+.yearBox {
+  position: absolute;
+  width: 88%;
+  height: 8.37%;
+  left: 6%;
+  bottom: 3.48%;
+  z-index: 11; }
+  .yearBox .ybl {
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden; }
+    .yearBox .ybl img {
+      width: auto;
+      height: 100%; }
+  .yearBox .ybm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    -webkit-flex-direction: column;
+    height: 100%;
+    margin-left: 0.1rem;
+    font-size: 0.26rem;
+    color: white;
+    line-height: 0.34rem; }
+    .yearBox .ybm span {
+      padding-left: 0.11rem;
+      background: url(../img/fk.png) no-repeat left center;
+      background-size: 0.1rem 0.1rem;
+      display: inline-block; }
+    .yearBox .ybm p:nth-child(2) {
+      font-size: 0.22rem; }
+  .yearBox .ybr {
+    height: 100%; }
+    .yearBox .ybr img {
+      height: 100%; }
+
+.word {
+  display: none; }
 
 /*# sourceMappingURL=index.css.map */

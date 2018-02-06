@@ -9,14 +9,42 @@
 	    <link rel="stylesheet" href="css/reset.css" />
 	    <link rel="stylesheet" href="css/index.css" />
 		<title>诗尼曼家具</title>
+		<script type="text/javascript" src="js/rem.js" ></script>
 		<script type="text/javascript" src="js/lufylegend-1.10.1.min.js" ></script>
 		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		
 	</head>
 	<body>
-		<div id="hotata"></div>
-		<div id="year">
-			<img src="img/year1.jpg" />
+		<div id="snimay"></div>
+		<canvas id="main" width="750" height="1207" hidden="hidden"></canvas>
+		<div id="yearOut" style="display: none;">
+			<p>长按图片保存 可以分享到朋友圈哦～</p>
+			<img src="" class="setImg" />
+			<div class="hitRed">
+				<a href="###"><img src="img/red.png" /></a>
+				<input class="close" type="image" src="img/close.png" />
+			</div>
+			<div id="year">
+				<img src="img/year1.jpg" />
+				<div class="word">
+					<img src="img/word.png" />
+				</div>
+				<div class="yearBox">
+					<div class="ybl floatl">
+						<img src="img/head.png" />
+					</div>
+					<div class="ybm floatl">
+						<p>王文杰邱梓..  贰零壹捌 <span>新年签</span></p>
+						<p>长按识别二维码测运势</p>
+					</div>
+					<div class="ybr floatr">
+						<img src="img/er.png" />
+					</div>
+					<div class="clearBoth"></div>
+				</div>
+			</div>
 		</div>
+		
 		<script>
 			function audioAutoPlay(id,v){
 			    var audio = document.getElementById(id);

@@ -1,5 +1,5 @@
 //游戏初始化
-LInit(1000/40,"hotata",750,1207,main);
+LInit(1000/40,"snimay",750,1207,main);
 //游戏入口主函数
 function main(){
     LGlobal.stageScale = LStageScaleMode.EXACT_FIT;//设置全屏变量
