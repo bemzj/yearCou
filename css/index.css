@@ -1,3 +1,16 @@
+body {
+  height: 100%;
+  overflow: hidden; }
+
+#music {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  z-index: 1000;
+  display: none; }
+
 #yearOut {
   position: fixed;
   top: 0;
@@ -178,5 +191,37 @@
 
 .word {
   display: none; }
+
+#danmu {
+  position: fixed;
+  height: 0.6rem;
+  width: 100%;
+  bottom: 2%;
+  z-index: 5; }
+  #danmu .danmu {
+    margin-right: 30px;
+    border-radius: 0.3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    line-height: 0.6rem;
+    font-size: 0.26rem;
+    color: white;
+    position: relative; }
+    #danmu .danmu p {
+      padding: 0 0.3rem 0 0.9rem; }
+    #danmu .danmu .head {
+      position: absolute;
+      top: -0.1rem;
+      left: 0;
+      height: 0.7rem;
+      width: 0.7rem;
+      border-radius: 50%;
+      border: 0.05rem solid white; }
+      #danmu .danmu .head img {
+        width: 100%; }
+
+.ab {
+  position: absolute;
+  top: 0;
+  left: 0; }
 
 /*# sourceMappingURL=index.css.map */

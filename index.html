@@ -15,8 +15,14 @@
 		
 	</head>
 	<body>
+		<div class="delete"></div>
+		<audio id="bg" autoplay="autoplay"  loop="loop" preload  src="music/bg.mp3" hidden="hidden"></audio >
 		<div id="snimay"></div>
 		<canvas id="main" width="750" height="1207" hidden="hidden"></canvas>
+		<div id="danmu">
+			<!--<div class="danmuBox">
+			</div>-->
+		</div>
 		<div id="yearOut" style="display: none;">
 			<p>长按图片保存 可以分享到朋友圈哦～</p>
 			<img src="" class="setImg" />
@@ -44,7 +50,7 @@
 				</div>
 			</div>
 		</div>
-		
+		<img src="img/music.png" id="music" />
 		<script>
 			function audioAutoPlay(id,v){
 			    var audio = document.getElementById(id);
@@ -61,11 +67,12 @@
 					    }
 			    }, false);
 			}
-//			audioAutoPlay('bg');
+			audioAutoPlay('bg');
 //			audioAutoPlay('a',0);
 		</script>
 		<script type="text/javascript" src="js/resource.js" ></script>
 		<script type="text/javascript" src="js/bemzjGame.js" ></script>
 		<script type="text/javascript" src="js/main.js" ></script>
+		<div class="delete"></div>
 	</body>
 </html>

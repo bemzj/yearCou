@@ -25,9 +25,70 @@ var gameImg = [
 	{path:url+'img/head.png',type:'img',name:'head'},//关闭
 	{path:url+'img/er.png',type:'img',name:'er'},//关闭
 	{path:url+'img/fk.png',type:'img',name:'fk'},//关闭
+	{path:url+'img/homepage.jpg',type:'img',name:'homepage'},//首页
+	{path:url+'img/cup.png',type:'img',name:'cup'},//关闭
+	{path:url+'img/shank.png',type:'img',name:'shank'},//关闭
+	{path:url+'img/light.png',type:'img',name:'light'},//关闭
+	{path:url+'img/o1.png',type:'img',name:'o1'},//关闭
+	{path:url+'img/o2.png',type:'img',name:'o2'},//关闭
+	{path:url+'img/sky.png',type:'img',name:'sky'},//关闭
+	{path:url+'img/stage.png',type:'img',name:'stage'},//关闭
+	{path:url+'img/stageUp.png',type:'img',name:'stageUp'},//关闭
+	{path:url+'img/wordTitle.png',type:'img',name:'wordTitle'},//关闭
+	{path:url+'img/title.png',type:'img',name:'title'},//关闭
+	{path:url+'img/clight.png',type:'img',name:'clight'},//关闭
+	{path:url+'img/smallLogo.png',type:'img',name:'smallLogo'},//logo
+	{path:url+'img/tangle.png',type:'img',name:'tangle'},//
+	{path:url+'img/redTitle.png',type:'img',name:'redTitle'},//
+	{path:url+'img/red3.png',type:'img',name:'red3'},//红包
+	{path:url+'img/red4.png',type:'img',name:'red4'},//红包1
+	{path:url+'img/bigStar.png',type:'img',name:'bigStar'},//星星
+	{path:url+'img/circle1.png',type:'img',name:'circle1'},//星星
+	{path:url+'img/circle2.png',type:'img',name:'circle2'},//星星
+	{path:url+'img/paper.png',type:'img',name:'paper'},//纸
+	{path:url+'img/music.png',type:'img',name:'music'},//音乐
 ];
 //全局变量
-var backLayer,loadLayer,textLayer,imgList;
+var backLayer,loadLayer,textLayer,lLayer,imgList,people;
+/*
+ * 朋友签：0
+ * 努力签：1
+ * 旅行签：2
+ * 爱情签：3
+ * 健身签：4
+ * 亲情签：5
+ * 财富签：6
+ * 勇气签：7
+ * 健康签：8
+ */
+var yearName = ["朋友签","努力签","旅行签","爱情签","健身签","亲情签","财富签","勇气签","健康签"];
+var yearNumber = 0;
+function  setTangles(str){
+	base(this,LSprite,[]);
+	var self = this;
+	self.word1 = new setText(0,15,24,"已有",'#ffd38e');
+	self.addChild(self.word1);
+	self.tangleWord = [];
+	for(var i=0;i<str.length;i++)
+	{
+		self.tangleWord[i] = new tangles(str[i]);
+		self.tangleWord[i].x = self.word1.getWidth()+5+44*i;
+		self.addChild(self.tangleWord[i]);
+	}
+	self.word2 = new setText(self.word1.getWidth()+6+44*i,15,24,"人参加",'#ffd38e');
+	self.addChild(self.word2);
+}
+//方块
+function tangles(n){
+	base(this,LSprite,[]);
+	var self = this;
+	self.bitmap = new LBitmap(new LBitmapData(imgList['tangle']));
+	self.addChild(self.bitmap);
+	self.word = new setText(0,0,32,n,'#fff031');
+	self.word.x = (self.bitmap.getWidth() - self.word.getWidth())/2;
+	self.word.y = (self.bitmap.getHeight() - self.word.getHeight())/2-2.5;
+	self.addChild(self.word);
+}
 //文档渲染完成
 $(function(){
 	//关闭红包页面
@@ -47,7 +108,7 @@ $(function(){
 function setRed(id,name){
 	$('.ybm p').eq(1).width($('.ybm p').eq(0).width());
 	$('.ybl').width($('.ybl').height());
-	showYear(id,name);
+	
 }
 function showYear(id,name){
 	//获取画布对象
@@ -120,4 +181,41 @@ function saveImageInfo() {
     var mycanvas = document.getElementById("main");
     var image = mycanvas.toDataURL("image/jpg");
     $('.setImg').attr('src',image);
+}
+//添加弹幕
+
+function addDanmu(id,className,data,time){
+	$(id).append('<div class="ab '+className+'"></div>');
+	var length = 0;
+	for(var i=0;i<data.length;i++)
+	{
+		var html = "";
+		html += '<div class="danmu floatl"><nobr><p>'+data[i].open.open_name+'：刚刚抽取了'+yearName[data[i].sign_img]+' '+data[i].content+'</p></nobr>';
+		html += '<div class="head"><img src='+data[i].open.open_face+'/></div></div>';
+		$('.'+className).append(html);
+		
+		length += (parseInt($('.'+className).find('.danmu').eq(i).width())+32);
+	}
+	for(var i=0;i<data.length;i++)
+	{
+		var html = "";
+		html += '<div class="danmu floatl"><nobr><p>'+data[i].open.open_name+'：刚刚抽取了'+yearName[data[i].sign_img]+' '+data[i].content+'</p></nobr>';
+		html += '<div class="head"><img src='+data[i].open.open_face+'/></div></div>';
+		$('.'+className).append(html);
+		
+		length += (parseInt($('.'+className).find('.danmu').eq(i).width())+32);
+	}
+	$('.'+className).append('<div class="clearl"></div>');
+	$('.'+className).width(length);
+	$('.'+className).css('left',$(window).width());
+	var start = $(window).width();
+	var cTween = setInterval(function(){
+		start-=0.5;
+		if(start==(-length/2)){
+			start=0;
+			$('.'+className).css('left',start+'px');
+		}else{
+			$('.'+className).css('left',start+'px');
+		}
+	},time);
 }
