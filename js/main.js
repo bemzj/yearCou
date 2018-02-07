@@ -27,32 +27,12 @@ $(function(){
 		}
 	
 	});
-	$(document).on('touchstart',function(){
-		//关闭红包页面
-		$('.close').on('touchstart',function(e){
-			e.stopPropagation();
-			$('.hitRed').fadeOut();
-			setTimeout(function(){
-				$('.hitRed').fadeIn(1000);
-			},6000);
-		});
-		//点击跳转页面
-		$('.hitRed a').on('touchstart',function(e){
-			e.stopPropagation();
-			window.location.href = 'http://295995.m.365huaer.com/mobile/newgame/index.jsp?aid=418e1fef0f2343f0871bff99c9f0485c&activityid=81086&wuid=295995&keyversion=0&isFromApiFilter=1';
-		});
-		$('#snimay').fadeOut(500);
-		$('#yearOut').fadeIn(500);
-	});
-});
-//文档渲染完成
-$(function(){
-	
 });
 //游戏初始化
 LInit(1000/40,"snimay",750,1207,main);
 //游戏入口主函数
 function main(){
+	$('#label').css('bottom',-$('#label').height()+'px');
 	//请求获取抽签人数
 	$.get('people.json',function(data){
 		people = data.number;
@@ -66,10 +46,13 @@ function main(){
 		}else{
 			yearNumber = parseInt(Math.random()*9);
 		}
-		yearNumber +=1;
 		$('#year>img').attr('src','img/year'+yearNumber+'.jpg');
 		//微信名
 		var wxname = "邱梓佳";
+		for(var i=0;i<yearName[yearNumber].length;i++)
+		{
+			$('.labelBox').find('p').eq(i).text(yearName[yearNumber][i]);	
+		}
 		showYear(yearNumber,wxname);
 	});
     LGlobal.stageScale = LStageScaleMode.EXACT_FIT;//设置全屏变量
@@ -312,15 +295,15 @@ function homepage(lTime){
 	title.x = rCenterWidth(title);
 	title.y = 73;
 	homeLayer.addChild(title);
-	var tm = new LTransitionManager(title);
-	var tp = {
-		type: LTransition.Fly,
-		startPoint: 2,
-		duration: 0.25,
-		direction: LTransition.IN,
-		easing: Strong.easeIn()
-	};
-	tm.startTransition(tp);
+//	var tm = new LTransitionManager(title);
+//	var tp = {
+//		type: LTransition.Fly,
+//		startPoint: 2,
+//		duration: 0.1,
+//		direction: LTransition.IN,
+//		easing: Strong.easeIn()
+//	};
+//	tm.startTransition(tp);
 	//添加标题
 	var wordTitle = getBitmap(imgList['wordTitle']);
 	wordTitle.x = rCenterWidth(wordTitle);
@@ -331,7 +314,7 @@ function homepage(lTime){
 	wordTitle.mask = maskObj;
 	var k = 0;
 	setTimeout(function(){
-		var wordTween = LTweenLite.to(wordTitle,0.005,{loop:true,onComplete:function(){
+		var wordTween = LTweenLite.to(wordTitle,0.002,{loop:true,onComplete:function(){
 			k++;
 			maskObj.graphics.clear();
 			maskObj.graphics.drawRect(0, "#ff0000", [wordTitle.x,136,4.32*k,132]);
@@ -339,7 +322,9 @@ function homepage(lTime){
 			if(k==100)
 			{
 				wordTween.pause();
-				LTweenLite.to(tWord,1.0,{alpha:1.0});
+				LTweenLite.to(tWord,1.0,{alpha:1.0,onComplete:function(){
+					shankOpen = true;
+				}});
 			}
 		}});
 	},500);
@@ -355,18 +340,18 @@ function homepage(lTime){
 	sky.x = 0;
 	sky.y = LGlobal.height - sky.getHeight();
 	homeLayer.addChild(sky);
-	setTimeout(function(){
+//	setTimeout(function(){
 		bigAndSmall(sky,2,2,1,0.01,0,true);
-	},2500);
-	var sm = new LTransitionManager(sky);
-	var sp = {
-		type: LTransition.Fly,
-		startPoint: 8,
-		duration: 0.25,
-		direction: LTransition.IN,
-		easing: Strong.easeIn()
-	};
-	sm.startTransition(sp);
+//	},2500);
+//	var sm = new LTransitionManager(sky);
+//	var sp = {
+//		type: LTransition.Fly,
+//		startPoint: 8,
+//		duration: 0.1,
+//		direction: LTransition.IN,
+//		easing: Strong.easeIn()
+//	};
+//	sm.startTransition(sp);
 	//摇一摇
 	var shank = getBitmap(imgList['shank']);
 	shank.x = 276;
@@ -390,6 +375,102 @@ function homepage(lTime){
 		homeLayer.addChild(new paper(pPosition,pTime));
 
 	}});
+//	$(document).on('touchstart',function(){
+//		$('#label').css({'opacity':1,'bottom':0}).find('.label').addClass('labelrotate');
+//                  	$('#shank')[0].play();
+//                  	document.getElementById("shank").onended = function() {
+//                  		$('#over')[0].play();
+//                  		document.getElementById("over").onended = function() {
+//                  			//关闭红包页面
+//                  			$('.close').on('touchstart', function(e) {
+//                  				e.stopPropagation();
+//                  				$('.hitRed').fadeOut();
+//                  				setTimeout(function() {
+//                  					$('.hitRed').fadeIn(1000);
+//                  				}, 6000);
+//                  			});
+//                  			//点击跳转页面
+//                  			$('.hitRed a').on('touchstart', function(e) {
+//                  				e.stopPropagation();
+//                  				window.location.href = 'http://295995.m.365huaer.com/mobile/newgame/index.jsp?aid=418e1fef0f2343f0871bff99c9f0485c&activityid=81086&wuid=295995&keyversion=0&isFromApiFilter=1';
+//                  			});
+//                  			$('#snimay').fadeOut(500);
+//                  			$('#yearOut').fadeIn(500);
+//                  			$('#label').fadeOut(500);
+//                  			$('#music').fadeIn(500);
+////                  		}
+//                  	
+//                  	};
+//	})
+	//摇一摇数据
+	var u = navigator.userAgent, app = navigator.appVersion;
+	var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);	
+	var SHAKE_THRESHOLD = 2000;
+	if(isiOS==true){
+	    SHAKE_THRESHOLD=500;
+	}
+	var last_update = 0;  
+	var x = y = z = last_x = last_y = last_z = 0;  
+	/*
+	* @手机运动监听，摇一摇开始
+	* */
+	(function init() {
+        if (window.DeviceMotionEvent) {  
+             window.addEventListener('devicemotion', deviceMotionHandler, false);  
+         } else {  
+            alert('not support mobile event');  
+   		}  
+    })();
+    function deviceMotionHandler(eventData) {
+
+            var acceleration = eventData.accelerationIncludingGravity;  
+            var curTime = new Date().getTime();  
+            if ((curTime - last_update) > 100) {  
+                var diffTime = curTime - last_update;  
+                last_update = curTime;  
+                x = acceleration.x;  
+                y = acceleration.y;  
+                z = acceleration.z;  
+                var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;  
+                if (speed > SHAKE_THRESHOLD) {  
+                    if(shankOpen==true)
+                    {
+                    	clearInterval(cTween);
+                    	$('#danmu').hide();
+                    	shankOpen=false;
+                    	var bottom = ($(window).height()-$('#label').height())/2
+                    	$('#label').css({'opacity':1,'bottom':bottom}).find('.label').addClass('labelrotate');
+                    	$('#shank')[0].play();
+                    	document.getElementById("shank").onended = function() {
+                    		$('#over')[0].play();
+                    		document.getElementById("over").onended = function() {
+                    			//关闭红包页面
+                    			$('.close').on('touchstart', function(e) {
+                    				e.stopPropagation();
+                    				$('.hitRed').fadeOut();
+                    				setTimeout(function() {
+                    					$('.hitRed').fadeIn(1000);
+                    				}, 6000);
+                    			});
+                    			//点击跳转页面
+                    			$('.hitRed a').on('touchstart', function(e) {
+                    				e.stopPropagation();
+                    				window.location.href = 'http://295995.m.365huaer.com/mobile/newgame/index.jsp?aid=418e1fef0f2343f0871bff99c9f0485c&activityid=81086&wuid=295995&keyversion=0&isFromApiFilter=1';
+                    			});
+                    			$('#label').fadeOut(500);
+                    			$('#snimay').fadeOut(500);
+                    			$('#yearOut').fadeIn(450);
+                    			$('#music').fadeIn(450);
+                    		}
+                    	
+                    	};
+                    }
+                }  
+                last_x = x; 
+                last_y = y;  
+                last_z = z;  
+            }  
+        }
 }
 function paper(x,time){
 	base(this,LSprite,[]);	
@@ -399,6 +480,17 @@ function paper(x,time){
 	self.bitmap = new LBitmap(new LBitmapData(imgList['paper']));	
 	self.addChild(self.bitmap);
 	LTweenLite.to(self,time,{y:1207,onComplete:function(){
+		self.remove();
+	}});
+}
+function labels(x,y,time1,time2,delay){
+	base(this,LSprite,[]);	
+	var self = this;
+	self.x = x;
+	self.y = 1207;
+	self.bitmap = new LBitmap(new LBitmapData(imgList['label']));	
+	self.addChild(self.bitmap);
+	LTweenLite.to(self,time1,{delay:delay,y:1207-self.bitmap.getHeight()-y}).to(self,time2,{y:1207,onComplete:function(){
 		self.remove();
 	}});
 }

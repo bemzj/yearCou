@@ -47,9 +47,10 @@ var gameImg = [
 	{path:url+'img/circle2.png',type:'img',name:'circle2'},//星星
 	{path:url+'img/paper.png',type:'img',name:'paper'},//纸
 	{path:url+'img/music.png',type:'img',name:'music'},//音乐
+	{path:url+'img/label.png',type:'img',name:'label'},//音乐
 ];
 //全局变量
-var backLayer,loadLayer,textLayer,lLayer,imgList,people;
+var backLayer,loadLayer,textLayer,lLayer,imgList,people,shankOpen = false,cTween;
 /*
  * 朋友签：0
  * 努力签：1
@@ -89,22 +90,7 @@ function tangles(n){
 	self.word.y = (self.bitmap.getHeight() - self.word.getHeight())/2-2.5;
 	self.addChild(self.word);
 }
-//文档渲染完成
-$(function(){
-	//关闭红包页面
-	$('.close').on('touchstart',function(e){
-		e.stopPropagation();
-		$('.hitRed').fadeOut();
-		setTimeout(function(){
-			$('.hitRed').fadeIn(1000);
-		},6000);
-	});
-	//点击跳转页面
-	$('.hitRed a').on('touchstart',function(e){
-		e.stopPropagation();
-		window.location.href = 'http://295995.m.365huaer.com/mobile/newgame/index.jsp?aid=418e1fef0f2343f0871bff99c9f0485c&activityid=81086&wuid=295995&keyversion=0&isFromApiFilter=1';
-	});
-});
+
 function setRed(id,name){
 	$('.ybm p').eq(1).width($('.ybm p').eq(0).width());
 	$('.ybl').width($('.ybl').height());
@@ -191,7 +177,7 @@ function addDanmu(id,className,data,time){
 	{
 		var html = "";
 		html += '<div class="danmu floatl"><nobr><p>'+data[i].open.open_name+'：刚刚抽取了'+yearName[data[i].sign_img]+' '+data[i].content+'</p></nobr>';
-		html += '<div class="head"><img src='+data[i].open.open_face+'/></div></div>';
+		html += '<div class="head"><img src="'+data[i].open.open_face+'"/></div></div>';
 		$('.'+className).append(html);
 		
 		length += (parseInt($('.'+className).find('.danmu').eq(i).width())+32);
@@ -200,7 +186,7 @@ function addDanmu(id,className,data,time){
 	{
 		var html = "";
 		html += '<div class="danmu floatl"><nobr><p>'+data[i].open.open_name+'：刚刚抽取了'+yearName[data[i].sign_img]+' '+data[i].content+'</p></nobr>';
-		html += '<div class="head"><img src='+data[i].open.open_face+'/></div></div>';
+		html += '<div class="head"><img src="'+data[i].open.open_face+'"/></div></div>';
 		$('.'+className).append(html);
 		
 		length += (parseInt($('.'+className).find('.danmu').eq(i).width())+32);
@@ -209,7 +195,7 @@ function addDanmu(id,className,data,time){
 	$('.'+className).width(length);
 	$('.'+className).css('left',$(window).width());
 	var start = $(window).width();
-	var cTween = setInterval(function(){
+	cTween = setInterval(function(){
 		start-=0.5;
 		if(start==(-length/2)){
 			start=0;

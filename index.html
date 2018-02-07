@@ -17,6 +17,8 @@
 	<body>
 		<div class="delete"></div>
 		<audio id="bg" autoplay="autoplay"  loop="loop" preload  src="music/bg.mp3" hidden="hidden"></audio >
+		<audio id="shank" autoplay="autoplay"  preload  src="music/shank.mp3" hidden="hidden"></audio >
+		<audio id="over" autoplay="autoplay"  preload  src="music/over.mp3" hidden="hidden"></audio >
 		<div id="snimay"></div>
 		<canvas id="main" width="750" height="1207" hidden="hidden"></canvas>
 		<div id="danmu">
@@ -50,6 +52,17 @@
 				</div>
 			</div>
 		</div>
+		<div id="label">
+			<div class="label">
+				<img src="img/label.png" />
+				<div class="labelBox">
+					<p>勇</p>
+					<p>气</p>
+					<p>签</p>
+				</div>
+			</div>
+			
+		</div>
 		<img src="img/music.png" id="music" />
 		<script>
 			function audioAutoPlay(id,v){
@@ -68,7 +81,8 @@
 			    }, false);
 			}
 			audioAutoPlay('bg');
-//			audioAutoPlay('a',0);
+			audioAutoPlay('shank',0);
+			audioAutoPlay('over',0);
 		</script>
 		<script type="text/javascript" src="js/resource.js" ></script>
 		<script type="text/javascript" src="js/bemzjGame.js" ></script>
